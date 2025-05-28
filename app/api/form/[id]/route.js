@@ -2,9 +2,9 @@ import { ObjectId } from 'mongodb';
 import clientPromise from '@/lib/mongodb';
 import { NextResponse } from 'next/server';
 
-export async function GET(request, context) {
+export async function GET(request, { params }) {
   try {
-    const { id } = context.params; // ✅ Fix: avoid destructuring directly in function signature
+    const id = params.id;
 
     if (!ObjectId.isValid(id)) {
       return NextResponse.json({ error: 'Invalid Form ID' }, { status: 400 });
@@ -29,9 +29,9 @@ export async function GET(request, context) {
   }
 }
 
-export async function PATCH(request, context) {
+export async function PATCH(request, { params }) {
   try {
-    const { id } = context.params; // ✅ Fix here too
+    const id = params.id;
     const updatedForm = await request.json();
 
     if (!ObjectId.isValid(id)) {

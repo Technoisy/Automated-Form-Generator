@@ -1,5 +1,5 @@
-// app/preview/[id]/page.jsx
 'use client';
+
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
@@ -41,6 +41,11 @@ export default function PreviewPage() {
     toast.success('Shareable link copied to clipboard!');
   };
 
+  const handleDisabledSubmit = (e) => {
+    e?.preventDefault?.();
+    toast(' This is a preview. Submission is disabled.');
+  };
+
   if (loading) {
     return <p className="text-center mt-10 text-gray-500">Loading preview...</p>;
   }
@@ -62,7 +67,11 @@ export default function PreviewPage() {
           </button>
         </div>
 
-        <FormFiller formData={formData} onSubmit={() => toast('This is a preview. Submission is disabled.')} />
+        <p className="text-sm text-yellow-600 bg-yellow-100 px-4 py-2 rounded mb-4 text-center">
+          This is a live preview. Form responses will not be saved.
+        </p>
+
+        <FormFiller formData={formData} onSubmit={handleDisabledSubmit} />
       </div>
     </div>
   );

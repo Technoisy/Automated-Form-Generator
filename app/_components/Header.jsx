@@ -6,7 +6,7 @@ function Header() {
   return (
     <div className="p-5 border-b shadow-sm flex items-center justify-between">
       <Image
-        src="/logo.jpeg"
+        src="/image ai.jpg"
         alt="Logo"
         width={100}
         height={50}
